@@ -1,0 +1,46 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+section .data
+    num1 dw 10 ; First number, change this value as needed
+    num2 dw 20 ; Second number, change this value as needed
+    result dw 0 ; Variable to store the greatest number
+
+section .text
+    global _start
+
+_start:
+    ; Move num1 to AX register
+    mov ax, [num1]
+
+    ; Move num2 to BX register
+    mov bx, [num2]
+
+    ; Compare num1 and num2
+    cmp ax, bx
+
+    ; Jump to label greater_than if AX > BX
+    jg greater_than
+
+    ; Move num2 to result if AX <= BX
+    mov [result], bx
+    jmp end_program
+
+greater_than:
+    ; Move num1 to result if AX > BX
+    mov [result], ax
+
+end_program:
+    ; Halt the program
+    mov ah, 4Ch
+    int 21h
+
+
+hlt

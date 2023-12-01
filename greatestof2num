@@ -1,0 +1,47 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+
+;code
+start: nop
+; Program to find the greatest of two numbers
+
+ORG 1000H ; Start the program at address 1000H
+
+MVI C, 05H ; Load the number of comparisons (2 numbers, so 2 comparisons)
+
+; Load the first number into register B
+MOV B, 08H ; Replace 08H with the first number
+
+COMPARE_LOOP:
+    ; Load the next number into register A
+    MOV A, 09H ; Replace 09H with the second number
+
+    ; Compare A and B
+    CMP B
+
+    ; If A is greater than B, update B
+    JNC SKIP_UPDATE
+    MOV B, A
+
+SKIP_UPDATE:
+    ; Decrement the number of comparisons
+    DCR C
+
+    ; Check if all comparisons are done
+    JNZ COMPARE_LOOP
+
+; The greatest number is now in register B
+
+HLT ; Halt the program
+
+; Data Section
+DS 08H ; Replace 08H with the first number
+DS 09H ; Replace 09H with the second number
+
+
+hlt
